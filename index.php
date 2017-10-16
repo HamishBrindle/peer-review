@@ -42,7 +42,7 @@ include('includes/head.html');
      </div>
 
  </div>
- <?php<?=
+ <?php
 
 include('includes/foot.html');
 
