@@ -6,10 +6,6 @@ include('includes/head.html');
 
 ?>
 
-<div class="site-wrapper">
-
-     <div class="site-wrapper-inner">
-
          <div class="cover-container">
 
              <div class="masthead clearfix">
@@ -33,15 +29,10 @@ include('includes/head.html');
 
              <div class="mastfoot">
                  <div class="inner">
-                     <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                     <p>A sweet site by <a href="https://github.com/hamishbrindle">Hamish</a> and <a href="https://github.com/sheldonlynn">Sheldon</a>
                  </div>
              </div>
-
          </div>
-
-     </div>
-
- </div>
  <?php<?=
 
 include('includes/foot.html');
