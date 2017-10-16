@@ -6,10 +6,6 @@ include('includes/head.html');
 
 ?>
 
-<div class="site-wrapper">
-
-     <div class="site-wrapper-inner">
-
          <div class="cover-container">
 
              <div class="masthead clearfix">
@@ -27,16 +23,15 @@ include('includes/head.html');
                  <h1 class="cover-heading">Make sure your code isn't shit!</h1>
                  <p class="lead">Post your code and have it reviewed by the finest minds in the BCIT CST program. We'll tell you what can stay, needs fixing, and needs to go!</p>
                  <p class="lead">
-                     <a href="#" class="btn btn-lg btn-secondary">Start Now</a>
+                     <a href="start.php" class="btn btn-lg btn-secondary">Start Now</a>
                  </p>
              </div>
 
              <div class="mastfoot">
                  <div class="inner">
-                     <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                     <p>A sweet site by <a href="https://github.com/hamishbrindle">Hamish</a> and <a href="https://github.com/sheldonlynn">Sheldon</a>
                  </div>
              </div>
-
          </div>
 
      </div>
