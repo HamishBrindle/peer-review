@@ -26,8 +26,14 @@ include('includes/head.html');
   <hr class="m-y-md">
 </div>
 
-<div class="btn-group btn-group-sm">
-  <a href="java.php"><img src="assets/img/java.png" alt="" class="img-rounded"></a>
+<div class="container">
+ <div class="row">
+   <div class="col-md-12">
+     <a href="java.php"><img src="assets/img/java-icon.png" alt="" class="img-rounded language-icon"></a>
+     <a href="#"><img src="assets/img/c.png" alt="" class="img-rounded language-icon"></a>
+     <a href="#"><img src="assets/img/javascript.png" alt="" class="img-rounded language-icon"></a>
+   </div>
+ </div>
 </div>
 
 

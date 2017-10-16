@@ -1,7 +1,11 @@
 .language-icon {
     max-width: 100px;
+    background-color: #e3e3e3;
+    border-radius: 25%;
+    padding: 30px;
+    margin: 20px;
 }
 
 .dark {
-    background-color: #367591
+    background-color: #367591;
 }

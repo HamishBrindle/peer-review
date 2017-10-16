@@ -23,7 +23,7 @@ include('includes/head.html');
                  <h1 class="cover-heading">Make sure your code isn't shit!</h1>
                  <p class="lead">Post your code and have it reviewed by the finest minds in the BCIT CST program. We'll tell you what can stay, needs fixing, and needs to go!</p>
                  <p class="lead">
-                     <a href="#" class="btn btn-lg btn-secondary">Start Now</a>
+                     <a href="start.php" class="btn btn-lg btn-secondary">Start Now</a>
                  </p>
              </div>
 
