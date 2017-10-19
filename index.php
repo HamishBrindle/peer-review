@@ -33,7 +33,8 @@ include('includes/head.html');
                  </div>
              </div>
          </div>
- <?php<?=
+
+ <?php
 
 include('includes/foot.html');
 
