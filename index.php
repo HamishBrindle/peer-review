@@ -34,6 +34,12 @@ include('includes/head.html');
              </div>
          </div>
 
+<<<<<<< HEAD
+=======
+     </div>
+
+ </div>
+>>>>>>> 883d37545a847dd49391ec5bd99d516256ae7134
  <?php
 
 include('includes/foot.html');
