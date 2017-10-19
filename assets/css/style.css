@@ -1,3 +1,18 @@
+/*
+Colors:
+    Black: #403F48
+    Purple: #5C3E84
+    Red: #F35C6E
+    Orange: #FFA87B
+    Primary-dark: #596C68
+    Primary-light: #95A792
+    White: #E3D9CA
+ */
+
+html, body {
+    background-color: #403F48;
+}
+
 body {
     width: 100%;
     height: 100%;
@@ -18,12 +33,13 @@ p {
 }
 
 a {
-    color: #26a5d3;
+    color: #95A792;
 }
 
 a:hover, a:focus {
     text-decoration: none;
-    color: #26a5d3;
+    color: #F35C6E;
+    transition: color 0.5s;
 }
 
 #contact {
@@ -49,4 +65,100 @@ textarea.form-control {
 
 .dark {
     background-color: #367591;
+}
+
+#submit-button {
+    width: 100%;
+    background-color: #596C68;
+    color: #E3D9CA;
+    border: 0px;
+    font-family: 'Patua One', cursive;
+}
+
+#submit-button:hover {
+    background-color: #F35C6E;
+    transition: background-color 0.5s;
+}
+
+#start-button {
+    background-color: #F35C6E;
+    color: #E3D9CA;
+    border: 0px;
+    font-family: 'Patua One', cursive;
+}
+
+#start-button:hover {
+    background-color: #E3D9CA;
+    color: #596C68;
+    transition: background-color 0.5s;
+}
+
+
+/* The Modal (background) */
+
+.modal {
+    color: #403F48;
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 4; // Dont change
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+    background-color: #e3e3e3;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 22%;
+    /* Could be more or less, depending on screen size */
+}
+
+
+/* The Close Button */
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.c-input {
+    color: #555;
+    text-shadow: none;
+}
+
+.submit {
+    font-family: 'Patua One', cursive;
+    width: 100%;
+    background: none;
+    color: #403F48;
+    font-size: 18px;
+    padding: 10px;
+    font-weight: bold;
+    border: solid #403F48 2px;
+    border-radius: 20px;
+}
+
+.submit:hover {
+    background: #F35C6E;
+    color: #FFF;
+    border-color: #F35C6E;
 }
