@@ -50,6 +50,7 @@ a:hover, a:focus {
 
 textarea.form-control {
     height: 100px;
+    text-shadow: none;
 }
 
 .language-icon {

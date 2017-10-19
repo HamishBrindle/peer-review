@@ -4,6 +4,58 @@ session_start();
 
 include('includes/head.html');
 
+$error = "";
+$submit = false;
+
+if (isset($_POST['submit'])) {
+  $submit = true;
+
+  if (isset($_POST['email']))
+    $_SESSION['email'] = $_POST['email'];
+
+  if (isset($_POST['radio-stacked']))
+    $_SESSION['language'] = $_POST['radio-stacked'];
+  else
+    $error = "Select a language!";
+
+}
+
+function showModal() {
+  echo '<div class="row">
+      <div id="myModal" class="modal flex-start"> <!-- The Modal -->
+          <div class="modal-content start"> <!-- Modal content -->
+            <form action="" method="post">
+              <div class="form-group">
+                  <div class="c-inputs-stacked">
+                    <p class="help-block">Select Your Language</p>
+                    <p id="error" style="color: red; font-size: 12px;"><?php echo $error ?></p>
+                    <label class="c-input c-radio">
+                      <input id="radioStacked1" name="radio-stacked" type="radio" value="php">
+                      <span class="c-indicator"></span>
+                      PHP
+                    </label>
+                    <label class="c-input c-radio">
+                      <input id="radioStacked2" name="radio-stacked" type="radio" value="html">
+                      <span class="c-indicator"></span>
+                      HTML/CSS
+                    </label>
+                    <label class="c-input c-radio">
+                      <input id="radioStacked3" name="radio-stacked" type="radio" value="javascript">
+                      <span class="c-indicator"></span>
+                      JavaScript
+                    </label>
+                  </div>
+                  <hr />
+                  <label for="email">Enter Your Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Email" required>
+                </div>
+                <input type="submit" class="btn btn-primary submit" value="Confirm" name="submit"></input>
+            </form>
+          </div> <!-- End of Modal content -->
+      </div> <!-- End of The Modal -->
+  </div>';
+}
+
 ?>
 
     <?php
@@ -14,48 +66,13 @@ include('includes/head.html');
 
         <h1 class="cover-heading">Let's Have A Look <br /> At Your Code</h1>
         <form name="submit-code" action="sent.php" method="post" style="text-align: left;">
-            <textarea id="submit-code"></textarea>
+            <textarea id="submit-code" name="code"></textarea>
             <br>
             <input type="submit" id="submit-button" class="lead btn btn-lg btn-secondary"/>
         </form>
 
-        <div class="row">
-            <div id="myModal" class="modal flex-start"> <!-- The Modal -->
-                <div class="modal-content start"> <!-- Modal content -->
+        <?php if (!$submit) showModal(); ?>
 
-                <form action="" method="post">
-                  <div class="form-group">
-                      <div class="c-inputs-stacked">
-                        <p class="help-block">Select Your Language</p>
-
-                        <label class="c-input c-radio">
-                          <input id="radioStacked2" name="radio-stacked" type="radio">
-                          <span class="c-indicator"></span>
-                          PHP
-                        </label>
-                        <label class="c-input c-radio">
-                          <input id="radioStacked1" name="radio-stacked" type="radio">
-                          <span class="c-indicator"></span>
-                          HTML/CSS
-                        </label>
-                        <label class="c-input c-radio">
-                          <input id="radioStacked1" name="radio-stacked" type="radio">
-                          <span class="c-indicator"></span>
-                          JavaScript
-                        </label>
-
-                      </div>
-                      <hr />
-                      <label for="email">Enter Your Email</label>
-                      <input type="email" class="form-control" id="email" placeholder="Email">
-                    </div>
-                    <button class="btn btn-primary submit">Submit</span>
-                </form>
-
-                </div> <!-- End of Modal content -->
-
-            </div> <!-- End of The Modal -->
-        </div>
     </div> <!-- End of main div -->
 
 <script
@@ -68,7 +85,8 @@ include('includes/head.html');
         //code here...
         var code = document.getElementById("submit-code");
         var editor = CodeMirror.fromTextArea(code, {
-            lineNumbers : true
+            lineNumbers : true,
+            mode: "javascript"
         });
     });
 </script>
