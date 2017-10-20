@@ -7,16 +7,15 @@ include('includes/head.html');
 $error = "";
 $submit = false;
 
-if (isset($_POST['submit'])) {
-  $submit = true;
+if (isset($_POST['email'])) {
+  $_SESSION['email'] = $_POST['email'];
 
-  if (isset($_POST['email']))
-    $_SESSION['email'] = $_POST['email'];
-
-  if (isset($_POST['radio-stacked']))
+  if (isset($_POST['radio-stacked'])) {
     $_SESSION['language'] = $_POST['radio-stacked'];
-  else
+    $submit = true;
+  } else {
     $error = "Select a language!";
+  }
 
 }
 
@@ -47,7 +46,7 @@ function showModal() {
                   </div>
                   <hr />
                   <label for="email">Enter Your Email</label>
-                  <input type="email" class="form-control" id="email" placeholder="Email" required>
+                  <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
                 </div>
                 <input type="submit" class="btn btn-primary submit" value="Confirm" name="submit"></input>
             </form>
