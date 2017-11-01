@@ -27,7 +27,7 @@
     "extract-text-webpack-plugin": "^2.1.2"
   },
   "scripts": {
-    "postinstall": "yarn install && composer install && npm build",
+    "postinstall": "npm install && composer install && npm run build",
     "start": "nf start",
     "build": "webpack -p",
     "scss": "node-sass --output-style compressed",
