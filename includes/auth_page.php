@@ -8,7 +8,7 @@ $dbh = new PDO("mysql:host=localhost;dbname=roast", "root", "1234");
 
 $config = new PHPAuth\Config($dbh);
 $auth   = new PHPAuth\Auth($dbh, $config);
-$register = $auth->register('shel@sheldon.com', 'sheldon1234!', 'sheldon1234!');
+//$register = $auth->register('shel@sheldon.com', 'sheldon1234!', 'sheldon1234!');
 
 $hash = $auth->login('sheld@sheldon.com', 'sheldon1234!');
 
