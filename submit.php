@@ -2,6 +2,7 @@
 
 session_start();
 
+include('includes/auth_page.php');
 include('includes/head.html');
 
 $error = "";
@@ -65,7 +66,7 @@ function showModal() {
 
         <h1 class="cover-heading">Let's Have A Look <br /> At Your Code</h1>
         <form name="submit-code" action="sent.php" method="post" style="text-align: left;">
-            <textarea id="submit-code" name="code"></textarea>
+            <textarea id="code-editor" name="code"></textarea>
             <br>
             <input type="submit" id="submit-button" class="lead btn btn-lg btn-secondary"/>
         </form>
@@ -78,11 +79,11 @@ function showModal() {
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="codemirror/lib/codemirror.js"></script>
+<script type="text/javascript" src="./codemirror/lib/codemirror.js"></script>
 <script>
     $(document).ready(function(){
         //code here...
-        var code = document.getElementById("submit-code");
+        var code = document.getElementById("code-editor");
         var editor = CodeMirror.fromTextArea(code, {
             lineNumbers : true,
             mode: "javascript"
