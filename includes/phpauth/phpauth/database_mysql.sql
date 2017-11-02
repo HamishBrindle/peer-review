@@ -95,5 +95,28 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `snippets`;
+CREATE TABLE `snippets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `type` ENUM('PHP', 'JAVASCRIPT', 'JAVA') NOT NULL,
+  `header` varchar(150) DEFAULT NULL,
+  `code` varchar(500) DEFAULT NULL,
+  `roasted` BOOLEAN NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`userId`) REFERENCES users(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 2015-11-06 14:09:37
+DROP TABLE IF EXISTS `roasts`;
+CREATE TABLE `roasts` (
+  `userId` int(11) NOT NULL,
+  `snippetId` int(11) NOT NULL,
+  `roast` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`userId`, `snippetId`),
+  FOREIGN KEY (`userId`) REFERENCES users(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`snippetId`) REFERENCES snippets(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO snippets VALUES(NULL, 1, 'JAVASCRIPT', 'JS Code', 'alert("hi");', 0);
+INSERT INTO snippets VALUES(NULL, 1, 'JAVA', 'Java Code', 'System.out.println("hi");', 1);
+INSERT INTO roasts VALUES(1, 2, 'Your code sux');
