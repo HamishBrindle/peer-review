@@ -24,17 +24,17 @@ if (!isset($_COOKIE['authID'])) {
             <div class="form-group row">
                 <label for="submit-type" class="col-2 col-form-label">Code Type</label>
                 <label class="c-input c-radio">
-                    <input id="radioStacked1" name="submit-type" type="radio" value="php">
+                    <input id="radioStacked1" name="submit-type" type="radio" value="PHP">
                     <span class="c-indicator"></span>
                     PHP
                 </label>
                 <label class="c-input c-radio">
-                    <input id="radioStacked2" name="submit-type" type="radio" value="java">
+                    <input id="radioStacked2" name="submit-type" type="radio" value="JAVA">
                     <span class="c-indicator"></span>
                     Java
                 </label>
                 <label class="c-input c-radio">
-                    <input id="radioStacked3" name="submit-type" type="radio" value="javascript">
+                    <input id="radioStacked3" name="submit-type" type="radio" value="JAVASCRIPT">
                     <span class="c-indicator"></span>
                     JavaScript
                 </label>

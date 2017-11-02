@@ -45,7 +45,7 @@ Colors:
  }
  body {
    color: #fff;
-   text-align: center;
+   text-align: left;
    text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
  }
 
@@ -505,3 +505,14 @@ label.form-invalid:after {
     color: white;
   }
 }
+
+.jumbrotron-fluid {
+  background: none;
+}
+
+.display-code {
+  background-color: #555;
+  border-radius: 10px;
+  padding: 10px;
+}
+

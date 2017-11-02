@@ -22,7 +22,6 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
 
     try {
         $dbh = new PDO("mysql:host=$server;dbname=$db;", $username, $password);
-
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         echo $e->getMessage();
