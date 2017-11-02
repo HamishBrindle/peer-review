@@ -11,7 +11,7 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"], 1);
 
-$dbh = new PDO("mysql:host=$server; dbname=$db;", $username, $password);
+$dbh = new PDO("mysql:dbname=$db;host=$server;", $username, $password);
 
 $config = new PHPAuth\Config($dbh);
 $auth   = new PHPAuth\Auth($dbh, $config);

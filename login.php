@@ -22,8 +22,6 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
 
     $dbh = new PDO("mysql:dbname=$db;host=$server;", $username, $password);
 
-    echo $server . " " . $db . " " . $username . " " . $password;
-
     $config = new PHPAuth\Config($dbh);
     $auth   = new PHPAuth\Auth($dbh, $config);
 
