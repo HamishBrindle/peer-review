@@ -20,21 +20,20 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
     $password = $url["pass"];
     $db = substr($url["path"], 1);
 
-    $dbh = new PDO("mysql:host=$server; dbname=$db;", $username, $password);
+    $dbh = new PDO("mysql:dbname=$db;host=$server;", $username, $password);
+
+    echo $server . " " . $db . " " . $username . " " . $password;
 
     $config = new PHPAuth\Config($dbh);
     $auth   = new PHPAuth\Auth($dbh, $config);
 
     $hash = $auth->login($email, $password);
 
+    setcookie('authID', $hash['hash'], time() + 90000);
 
-    if ($auth->isLogged()) {
-        setcookie('authID', $hash['hash'], time() + 90000);
-
-        $_SESSION['userId'] = $auth->getUID($email);
-        $_SESSION['userEmail'] = $email;
-        $_SESSION['loggedIn'] = 1;
-    }
+    $_SESSION['userId'] = $auth->getUID($email);
+    $_SESSION['userEmail'] = $email;
+    $_SESSION['loggedIn'] = 1;
 
     if (isset($_GET['redirect']) && strlen($_GET['redirect']) != 0) {
         header("Location: /" . $_GET['redirect'] . ".php");
