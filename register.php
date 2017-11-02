@@ -14,7 +14,10 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
     $password = $_POST['reg_password'];
     $confirmPassword = $_POST['reg_password_confirm'];
 
-    $dbh = new PDO("mysql:host=localhost;dbname=roast", "root", "1234");
+    $dotenv = new Dotenv\Dotenv(getcwd());
+    $dotenv->load();
+
+    $dbh = new PDO('mysql:host=' . getenv('MYSQL_HOST') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
 
     $config = new PHPAuth\Config($dbh);
     $auth   = new PHPAuth\Auth($dbh, $config);
