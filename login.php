@@ -23,12 +23,18 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
 
     $hash = $auth->login($email, $password);
 
-    setcookie('authID', $hash['hash'], time() + 9000000000);
+    setcookie('authID', $hash['hash'], time() + 90000);
 
     $_SESSION['userId'] = $auth->getUID($email);
     $_SESSION['userEmail'] = $email;
+    $_SESSION['loggedIn'] = 1;
 
-    header("Location: /user.php");
+    if (isset($_GET['redirect'])) {
+        header("Location: /" . $_GET['redirect'] . ".php");
+    } else {
+        header("Location: /user.php");
+    }
+
 }
 ?>
 
@@ -39,7 +45,7 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
     <div class="text-center" style="padding:50px 0">
         <!-- Main Form -->
         <div class="login-form-1">
-            <form id="login-form" class="text-left" method="post" action="login.php">
+            <form id="login-form" class="text-left" method="post" action="login.php?redirect=<?php echo $_GET['redirect']?>">
                 <div class="login-form-main-message"></div>
                 <div class="main-login-form">
                     <div class="login-group">
@@ -59,7 +65,7 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
                 </div>
                 <div class="etc-login-form">
-                    <p>new user? <a href="register.php">create new account</a></p>
+                    <p>new user? <a href="register.php?redirect=<?php echo $_GET['redirect']?>">create new account</a></p>
                 </div>
             </form>
         </div>

@@ -5,10 +5,16 @@
         </a>
         <nav class="nav nav-masthead">
             <a class="nav-link" href="/">Home</a>
-            <a class="nav-link" href="submit.php">Submit</a>
-            <a class="nav-link" href="#">Contact</a>
-            <a class="nav-link" href="register.php">Register</a>
-            <a class="nav-link" href="login.php">Login</a>
+            <?php
+                if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) {
+
+                    echo ("<a class='nav-link' href='submit.php'>Submit</a>
+                            <a class='nav-link' href='logout.php'>Logout</a>");
+                } else {
+                    echo ("<a class='nav-link' href='register.php'>Register</a>
+                            <a class='nav-link' href='login.php'>Login</a>");
+                }
+            ?>
         </nav>
     </div>
 </div>

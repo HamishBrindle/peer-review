@@ -2,19 +2,13 @@
 
 session_start();
 
-include('includes/auth_page.php');
 include('includes/head.html');
+include_once('includes/navigation.html');
 
-
-if (isset($_POST['submit-editor'])) {
-    echo $_POST['submit-editor'];
+if (!isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] != 1) {
+    header("Location: /login.php?redirect=submit");
 }
-
 ?>
-
-    <?php
-    include_once('includes/navigation.html');
-    ?>
 
     <div class="container inner cover"> <!-- Main div -->
 

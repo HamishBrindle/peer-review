@@ -26,9 +26,14 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
 
     $hash = $auth->login($email, $password);
 
-    setcookie('authID', $hash['hash'], time() + 9000000000);
+    setcookie('authID', $hash['hash'], time() + 90000);
 
-    header("Location: /user.php");
+
+    if (isset($_GET['redirect'])) {
+        header("Location: /" . $_GET['redirect'] . ".php");
+    } else {
+        header("Location: /user.php");
+    }
 }
 ?>
 
@@ -39,7 +44,7 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
     <div class="text-center" style="padding:50px 0">
         <!-- Main Form -->
         <div class="login-form-1">
-            <form id="register-form" class="text-left" method="post" action="register.php">
+            <form id="register-form" class="text-left" method="post" action="register.php?redirect=<?php echo $_GET['redirect']?>">
                 <div class="login-form-main-message"></div>
                 <div class="main-login-form">
                     <div class="login-group">
