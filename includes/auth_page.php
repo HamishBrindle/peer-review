@@ -4,9 +4,6 @@ require("vendor/autoload.php");
 require("includes/phpauth/phpauth/Config.php");
 require("includes/phpauth/phpauth/Auth.php");
 
-$dotenv = new Dotenv\Dotenv(getcwd());
-$dotenv->load();
-
 $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 $server = $url["host"];

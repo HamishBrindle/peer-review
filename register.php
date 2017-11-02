@@ -14,9 +14,6 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
     $password = $_POST['reg_password'];
     $confirmPassword = $_POST['reg_password_confirm'];
 
-    $dotenv = new Dotenv\Dotenv(getcwd());
-    $dotenv->load();
-
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
     $server = $url["host"];

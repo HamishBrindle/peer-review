@@ -11,9 +11,6 @@ $header = $_POST['submit-header'];
 $code = $_POST['submit-editor'];
 $userId = $_SESSION['userId'];
 
-$dotenv = new Dotenv\Dotenv(getcwd());
-$dotenv->load();
-
 $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 $server = $url["host"];
