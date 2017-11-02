@@ -103,7 +103,7 @@ CREATE TABLE `snippets` (
   `header` varchar(150) DEFAULT NULL,
   `code` varchar(500) DEFAULT NULL,
   `roasted` BOOLEAN NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`userId`) REFERENCES users(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -113,12 +113,12 @@ CREATE TABLE `roasts` (
   `userId` int(11) NOT NULL,
   `snippetId` int(11) NOT NULL,
   `roast` varchar(500) DEFAULT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`userId`, `snippetId`),
   FOREIGN KEY (`userId`) REFERENCES users(`id`) ON DELETE CASCADE,
   FOREIGN KEY (`snippetId`) REFERENCES snippets(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO snippets VALUES(NULL, 1, 'JAVASCRIPT', 'JS Code', 'alert("hi");', 0);
-INSERT INTO snippets VALUES(NULL, 1, 'JAVA', 'Java Code', 'System.out.println("hi");', 1);
-INSERT INTO roasts VALUES(1, 2, 'Your code sux');
+INSERT INTO snippets VALUES(NULL, 1, 'JAVASCRIPT', 'JS Code', 'alert("hi");', 0, NULL);
+INSERT INTO snippets VALUES(NULL, 1, 'JAVA', 'Java Code', 'System.out.println("hi");', 1, NULL);
+INSERT INTO roasts VALUES(1, 2, 'Your code sux', NULL);
