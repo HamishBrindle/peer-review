@@ -14,11 +14,15 @@ $userId = $_SESSION['userId'];
 $dotenv = new Dotenv\Dotenv(getcwd());
 $dotenv->load();
 
-$conn = mysqli_connect(getenv('DB_HOST'), getenv('DB_USERNAME'),getenv('DB_PASSWORD')) or
-die(mysqli_connect_error());
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-mysqli_select_db($conn, getenv('DB_DATABASE')) or
-die(mysqli_error($conn));
+$server = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+
+$conn = mysqli_connect($server, $username, $password, $db) or
+die(mysqli_connect_error());
 
 $result = mysqli_query($conn, "
     INSERT INTO snippets VALUES(NULL,"

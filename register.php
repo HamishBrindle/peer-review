@@ -17,7 +17,14 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
     $dotenv = new Dotenv\Dotenv(getcwd());
     $dotenv->load();
 
-    $dbh = new PDO('mysql:host=' . getenv('MYSQL_HOST') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
+
+    $dbh = new PDO('mysql:host=' . $server . ';dbname=' . $db, $username, $password);
 
     $config = new PHPAuth\Config($dbh);
     $auth   = new PHPAuth\Auth($dbh, $config);

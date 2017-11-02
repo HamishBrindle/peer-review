@@ -18,9 +18,12 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
 
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-    print_r($url);
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
 
-    $dbh = new PDO('mysql:host=' . getenv('CLEARDB_DATABASE_URL') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
+    $dbh = new PDO('mysql:host=' . $server . ';dbname=' . $db, $username, $password);
 
     $config = new PHPAuth\Config($dbh);
     $auth   = new PHPAuth\Auth($dbh, $config);
