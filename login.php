@@ -13,10 +13,14 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
     $email = $_POST['lg_email'];
     $password = $_POST['lg_password'];
 
-    $dotenv = new Dotenv\Dotenv(getcwd());
-    $dotenv->load();
+//    $dotenv = new Dotenv\Dotenv(getcwd());
+//    $dotenv->load();
 
-    $dbh = new PDO('mysql:host=' . getenv('MYSQL_HOST') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+    print_r($url);
+
+    $dbh = new PDO('mysql:host=' . getenv('CLEARDB_DATABASE_URL') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
 
     $config = new PHPAuth\Config($dbh);
     $auth   = new PHPAuth\Auth($dbh, $config);
