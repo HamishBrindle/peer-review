@@ -6,7 +6,7 @@
         <nav class="nav nav-masthead">
             <a class="nav-link" href="/">Home</a>
             <?php
-                if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) {
+                if (isset($_COOKIE['authID'])) {
 
                     echo ("<a class='nav-link' href='submit.php'>Submit</a>
                             <a class='nav-link' href='logout.php'>Logout</a>");

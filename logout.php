@@ -8,4 +8,5 @@
 
 session_destroy();
 
+setcookie("authID", "", time() - 600);
 header("Location: /index.php");
