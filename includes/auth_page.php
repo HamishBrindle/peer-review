@@ -10,14 +10,9 @@ $config = new PHPAuth\Config($dbh);
 $auth   = new PHPAuth\Auth($dbh, $config);
 //$register = $auth->register('shel@sheldon.com', 'sheldon1234!', 'sheldon1234!');
 
-$hash = $auth->login('sheld@sheldon.com', 'sheldon1234!');
+//$hash = $auth->login('shel@sheldon.com', 'sheldon1234!');
 
-if (isset($hash['hash'])) {
-    setcookie('authID', $hash['hash'], time() + 9000000000);
-} else {
-    header('HTTP/1.0 403 Forbidden');
-    echo($hash['error'][1]);
-}
+//setcookie('authID', $hash['hash'], time() + 9000000000);
 
 if (!$auth->isLogged()) {
 header('HTTP/1.0 403 Forbidden');
