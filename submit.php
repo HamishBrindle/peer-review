@@ -9,8 +9,6 @@ if (!isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] != 1) {
     header("Location: /login.php?redirect=submit");
 }
 
-include('includes/auth_page.php');
-
 ?>
 
     <div class="container inner cover"> <!-- Main div -->

@@ -5,7 +5,7 @@ session_start();
 include('includes/head.html');
 include_once('includes/navigation.html');
 
-if (!isset($_SESSION['userId']) && $_SESSION['loggedIn'] != 1) {
+if (!isset($_COOKIE['authID'])) {
     header("Location: /login.php");
 }
 ?>
