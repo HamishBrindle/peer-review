@@ -5,36 +5,53 @@ session_start();
 include('includes/head.html');
 include_once('includes/navigation.html');
 
-if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST['reg_password_confirm']) && isset($_POST['reg_agree'])) {
+if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST['reg_agree'])) {
     require("vendor/autoload.php");
     require("includes/phpauth/phpauth/Config.php");
     require("includes/phpauth/phpauth/Auth.php");
 
     $email = $_POST['reg_email'];
     $password = $_POST['reg_password'];
-    $confirmPassword = $_POST['reg_password_confirm'];
 
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"], 1);
+    $server = 'us-cdbr-iron-east-05.cleardb.net';
+    $username = 'bffd13713c3b11';
+    $password = 'ccc14f3a';
+    $db = 'heroku_80a591f53062628';
 
-    $dbh = new PDO("mysql:dbname=$db;host=$server;", $username, $password);
+    try {
+        $dbh = new PDO("mysql:host=$server;dbname=$db;", $username, $password);
+
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
 
     $config = new PHPAuth\Config($dbh);
     $auth   = new PHPAuth\Auth($dbh, $config);
 
-    $hash = $auth->register($email, $password, $confirmPassword);
+    $hash = $auth->register($email, $password, $password);
+
+    if (!$hash["error"]) {
+        echo "registration successful";
+    } else {
+        die($hash["message"] . "<a href='register.php'> Try Again</a>");
+    }
 
     $hash = $auth->login($email, $password);
 
-    setcookie('authID', $hash['hash'], time() + 90000);
+    var_dump($hash);
 
+    if (!$hash["error"]) {
+        setcookie('authID', $hash['hash'], time() + 90000);
+        $_SESSION['userId'] = $auth->getUID($email);
+        $_SESSION['userEmail'] = $email;
+        $_SESSION['loggedIn'] = 1;
+    }
 
-    if (isset($_GET['redirect']) && strlen($_GET['redirect']) != 0) {
-        header("Location: /" . $_GET['redirect'] . ".php");
+    if (isset($_POST['redirect']) && strlen($_POST['redirect']) != 0) {
+        header("Location: /" . $_POST['redirect'] . ".php");
     } else {
         header("Location: /user.php");
     }
@@ -48,7 +65,7 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
     <div class="text-center" style="padding:50px 0">
         <!-- Main Form -->
         <div class="login-form-1">
-            <form id="register-form" class="text-left" method="post" action="register.php?redirect=<?php echo $_GET['redirect']?>">
+            <form id="register-form" class="text-left" method="post" action='register.php'>
                 <div class="login-form-main-message"></div>
                 <div class="main-login-form">
                     <div class="login-group">
@@ -60,15 +77,13 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
                             <label for="reg_password" class="sr-only">Password</label>
                             <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password">
                         </div>
-                        <div class="form-group">
-                            <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
-                            <input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">
-                        </div>
 
                         <div class="form-group login-group-checkbox">
                             <input type="checkbox" class="" id="reg_agree" name="reg_agree">
                             <label for="reg_agree">i agree with <a href="#">terms</a></label>
                         </div>
+
+                        <input type="hidden" name="redirect" id="redirect" value="<?php if (isset($_GET['redirect'])) echo $_GET['redirect'] ?>">
                     </div>
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
                 </div>
