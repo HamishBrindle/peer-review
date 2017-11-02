@@ -13,8 +13,8 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
     $email = $_POST['lg_email'];
     $password = $_POST['lg_password'];
 
-//    $dotenv = new Dotenv\Dotenv(getcwd());
-//    $dotenv->load();
+    $dotenv = new Dotenv\Dotenv(getcwd());
+    $dotenv->load();
 
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
