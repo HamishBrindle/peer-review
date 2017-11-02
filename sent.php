@@ -6,11 +6,6 @@ session_start();
 if (!(isset($_POST['submit-type']) && isset($_POST['submit-header']) && isset($_POST['submit-editor']) && isset($_SESSION['userId'])))
     die("<a href='submit.php'> Try submitting again </a>");
 
-$type = $_POST['submit-type'];
-$header = $_POST['submit-header'];
-$code = $_POST['submit-editor'];
-$userId = $_SESSION['userId'];
-
 $server = 'us-cdbr-iron-east-05.cleardb.net';
 $username = 'bffd13713c3b11';
 $password = 'ccc14f3a';
@@ -18,6 +13,11 @@ $db = 'heroku_80a591f53062628';
 
 $conn = mysqli_connect($server, $username, $password, $db) or
 die(mysqli_connect_error());
+
+$type = mysqli_real_escape_string($conn, $_POST['submit-type']);
+$header = mysqli_real_escape_string($conn, $_POST['submit-header']);
+$code = mysqli_real_escape_string($conn, $_POST['submit-editor']);
+$userId = mysqli_real_escape_string($conn, $_SESSION['userId']);
 
 $result = mysqli_query($conn, "
     INSERT INTO snippets VALUES(NULL,"
