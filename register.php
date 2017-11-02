@@ -21,7 +21,7 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
     $password = $url["pass"];
     $db = substr($url["path"], 1);
 
-    $dbh = new PDO('mysql:host=' . $server . ';dbname=' . $db, $username, $password);
+    $dbh = new PDO("mysql:host=$server; dbname=$db;", $user, $pass);
 
     $config = new PHPAuth\Config($dbh);
     $auth   = new PHPAuth\Auth($dbh, $config);
