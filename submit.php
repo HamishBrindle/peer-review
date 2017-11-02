@@ -34,9 +34,9 @@ if (isset($_POST['submit-editor'])) {
                     PHP
                 </label>
                 <label class="c-input c-radio">
-                    <input id="radioStacked2" name="submit-type" type="radio" value="html">
+                    <input id="radioStacked2" name="submit-type" type="radio" value="java">
                     <span class="c-indicator"></span>
-                    HTML/CSS
+                    Java
                 </label>
                 <label class="c-input c-radio">
                     <input id="radioStacked3" name="submit-type" type="radio" value="javascript">
