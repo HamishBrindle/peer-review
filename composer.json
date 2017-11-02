@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "phpmailer/phpmailer": "^5.2",
-        "phpauth/phpauth": "^1.1"
+        "phpauth/phpauth": "^1.1",
+        "vlucas/phpdotenv": "^2.4"
     }
 }

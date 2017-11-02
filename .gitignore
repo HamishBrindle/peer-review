@@ -1,5 +1,7 @@
 .env
 
+dist/
+
 # User-specific stuff:
 .idea/
 
