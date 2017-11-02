@@ -15,10 +15,10 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
 
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-    $server = 'us-cdbr-iron-east-05.cleardb.net';
-    $username = 'bffd13713c3b11';
-    $password = 'ccc14f3a';
-    $db = 'heroku_80a591f53062628';
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
 
     try {
         $dbh = new PDO("mysql:host=$server;dbname=$db;", $username, $password);
