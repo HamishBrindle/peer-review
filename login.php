@@ -25,6 +25,9 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
 
     setcookie('authID', $hash['hash'], time() + 9000000000);
 
+    $_SESSION['userId'] = $auth->getUID($email);
+    $_SESSION['userEmail'] = $email;
+
     header("Location: /user.php");
 }
 ?>

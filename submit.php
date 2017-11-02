@@ -6,8 +6,8 @@ include('includes/auth_page.php');
 include('includes/head.html');
 
 
-if (isset($_POST['email'])) {
-
+if (isset($_POST['submit-editor'])) {
+    echo $_POST['submit-editor'];
 }
 
 ?>
@@ -19,10 +19,11 @@ if (isset($_POST['email'])) {
     <div class="container inner cover"> <!-- Main div -->
 
         <h1 class="cover-heading">Let's Have A Look <br /> At Your Code</h1>
-        <form name="submit-code" action="sent.php" method="post" style="text-align: left;">
+
+        <form name="submit-form" id="submit-form" action="sent.php" method="post" style="text-align: left;">
             <div class="form-group row">
                 <label for="submit-header" class="col-2 col-form-label">Title</label>
-                <input type="text" id="submit-header" class="form-control col-6">
+                <input type="text" id="submit-header" name="submit-header" class="form-control col-6">
             </div>
 
             <div class="form-group row">
@@ -44,7 +45,7 @@ if (isset($_POST['email'])) {
                 </label>
             </div>
 
-            <textarea id="code-editor" name="code"></textarea>
+            <textarea id="submit-editor" name="submit-editor"></textarea>
             <br>
             <input type="submit" id="submit-button" class="lead btn btn-lg btn-secondary"/>
         </form>
@@ -57,14 +58,24 @@ if (isset($_POST['email'])) {
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="./codemirror/lib/codemirror.js"></script>
 <script>
+    var code;
+    var editor;
     $(document).ready(function(){
         //code here...
-        var code = document.getElementById("code-editor");
-        var editor = CodeMirror.fromTextArea(code, {
+        code = document.getElementById("submit-editor");
+        editor = CodeMirror.fromTextArea(code, {
             lineNumbers : true,
             mode: "javascript"
         });
+
+//        $('#submit-form').submit(
+//            function(event) {
+//                $(this).append('<input type="hidden" name="submit-code" id="submit-code" value="' + editor.getValue() + '" />');
+//            }
+//        );
     });
+
+
 </script>
 <?php
 

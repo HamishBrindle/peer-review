@@ -1,69 +1,25 @@
 <?php
+require("vendor/autoload.php");
+$type = $_POST['submit-type'];
+$header = $_POST['submit-header'];
+$code = $_POST['submit-editor'];
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+$dotenv = new Dotenv\Dotenv(getcwd());
+$dotenv->load();
 
-//Load composer's autoloader
-require 'vendor/autoload.php';
+$conn = mysqli_connect(getenv('DB_HOST'), getenv('DB_USERNAME'),getenv('DB_PASSWORD')) or
+die(mysqli_connect_error());
 
-session_start();
+mysqli_select_db($conn, getenv('DB_DATABASE')) or
+die(mysqli_error($conn));
 
-include('includes/head.html');
+$result = mysqli_query($conn, "
+    INSERT INTO snippets(id, userId, type, header, code, roasted, date) VALUES(NULL,"
+    . $_SESSION[userId] . ","
+    . $type . ","
+    . $header . ","
+    . $code . ","
+    . "0, NULL"
+) or die(mysqli_error($conn));
 
-$email;
-
-$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-try {
-    //Server settings
-    $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-    $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'user@example.com';                 // SMTP username
-    $mail->Password = 'secret';                           // SMTP password
-    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                                    // TCP port to connect to
-
-    //Recipients
-    $mail->setFrom('from@example.com', 'Mailer');
-    $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-    /* Extra stuff
-    $mail->addAddress('ellen@example.com');               // Name is optional
-    $mail->addReplyTo('info@example.com', 'Information');
-    $mail->addCC('cc@example.com');
-    $mail->addBCC('bcc@example.com');
-    */
-
-    /* Attachments
-    $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-    */
-
-    //Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'We\'re reviewing your code!';
-    $mail->Body    = 'Thanks for submitting your code for review, we\'re excited to take a look!';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-    $mail->send();
-    echo 'Message has been sent';
-} catch (Exception $e) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-}
-
-if (isset($_POST['code'])) {
-  if (isset($_SESSION['email'])) {
-    $email = $_SESSION['email'];
-    $code = $_POST['code'];
-    echo '<h1>Success!</h1>';
-  } else {
-    echo '<h1>Email Failed...</h1>';
-  }
-} else {
-  header("Location: submit.php");
-}
-
-
-include('includes/foot.html');
- ?>
+print_r($result);
