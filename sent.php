@@ -11,12 +11,10 @@ $header = $_POST['submit-header'];
 $code = $_POST['submit-editor'];
 $userId = $_SESSION['userId'];
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-$server = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$db = substr($url["path"], 1);
+$server = 'us-cdbr-iron-east-05.cleardb.net';
+$username = 'bffd13713c3b11';
+$password = 'ccc14f3a';
+$db = 'heroku_80a591f53062628';
 
 $conn = mysqli_connect($server, $username, $password, $db) or
 die(mysqli_connect_error());
