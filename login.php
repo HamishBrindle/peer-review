@@ -33,7 +33,7 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
     $_SESSION['userEmail'] = $email;
     $_SESSION['loggedIn'] = 1;
 
-    if (isset($_GET['redirect'])) {
+    if (isset($_GET['redirect']) && strlen($_GET['redirect']) != 0) {
         header("Location: /" . $_GET['redirect'] . ".php");
     } else {
         header("Location: /user.php");

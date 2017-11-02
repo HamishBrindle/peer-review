@@ -33,7 +33,7 @@ if (isset($_POST['reg_email']) && isset($_POST['reg_password']) && isset($_POST[
     setcookie('authID', $hash['hash'], time() + 90000);
 
 
-    if (isset($_GET['redirect'])) {
+    if (isset($_GET['redirect']) && strlen($_GET['redirect']) != 0) {
         header("Location: /" . $_GET['redirect'] . ".php");
     } else {
         header("Location: /user.php");
