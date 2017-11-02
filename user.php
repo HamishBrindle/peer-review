@@ -2,9 +2,12 @@
 
 session_start();
 
-include('includes/auth_page.php');
 include('includes/head.html');
 include_once('includes/navigation.html');
+
+if (!isset($_SESSION['userId']) && $_SESSION['loggedIn'] != 1) {
+    header("Location: /login.php");
+}
 ?>
 
 <div class="container inner cover"> <!-- Main div -->

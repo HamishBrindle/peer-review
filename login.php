@@ -27,11 +27,14 @@ if (isset($_POST['lg_email']) && isset($_POST['lg_password'])) {
 
     $hash = $auth->login($email, $password);
 
-    setcookie('authID', $hash['hash'], time() + 90000);
 
-    $_SESSION['userId'] = $auth->getUID($email);
-    $_SESSION['userEmail'] = $email;
-    $_SESSION['loggedIn'] = 1;
+    if ($auth->isLogged()) {
+        setcookie('authID', $hash['hash'], time() + 90000);
+
+        $_SESSION['userId'] = $auth->getUID($email);
+        $_SESSION['userEmail'] = $email;
+        $_SESSION['loggedIn'] = 1;
+    }
 
     if (isset($_GET['redirect']) && strlen($_GET['redirect']) != 0) {
         header("Location: /" . $_GET['redirect'] . ".php");
